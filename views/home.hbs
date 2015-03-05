@@ -1,0 +1,44 @@
+
+<br>
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist" id="websites">
+    <li role="presentation" class="active"><a href="#hypebeast" aria-controls="hypebeast" role="tab" data-toggle="tab"><img style="max-width: 100px;" src="http://store.hypebeast.com/bundles/hypebeasteditorial/images/hypebeast-logo.png?dd2e021"> <span class="badge" id="hypebeast_count">4</span></a></li>
+    <li role="presentation"><a href="#profile" aria-controls="highsnobiety" role="tab" data-toggle="tab">Highsnobiety</a></li>
+</ul>
+
+
+ <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="hypebeast">
+      <table id="hypebeast" class="table table-bordered table-striped table-condensed">
+                     <thead>
+                        <tr>
+                          <th>Titutlo</th>
+                          <th>Imagenes</th>
+                          <th>Texto</th>
+                          <th>Publicado</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {{#each result}}
+                        <tr>
+                          <td>{{title}}</td>
+                          <td><p class="images"style="display:none">{{images}}</p><input class="btn btn-default image" type="submit" value="Copiar"></td>
+                          <td><p class="texto" style="display:none">{{text}}</p><input class="btn btn-default text" type="submit" value="Copiar"></td>
+                          <td style="text-align:center;"><input class="publicar" value="{{_id}}" type="checkbox"></td>
+                        </tr>
+                        {{/each}}
+                        
+                      </tbody>
+        </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+  </div>
+
+</div>
+
+<script type="text/javascript" src="public/javascripts/ZeroClipboard.js"></script> 
+
+        

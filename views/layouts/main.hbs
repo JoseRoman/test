@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Example App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+
+  -ms-transform: scale(1.2); /* IE */
+  -moz-transform: scale(1.2); /* FF */
+  -webkit-transform: scale(1.2); /* Safari and Chrome */
+  -o-transform: scale(1.2); /* Opera */
+  padding: 10px;
+}
+    </style>
+</head>
+<body>
+    
+    
+<div class="container">
+
+    {{{body}}}
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#websites a').click(function (e) {
+		e.preventDefault()
+		$(this).tab('show')
+	});
+
+	var hypebeast_count = $('#hypebeast tr').length;
+	$('#hypebeast_count').html(hypebeast_count-1);
+
+
+	var image_copy = new ZeroClipboard($('.image'));
+
+	$('.image').click(function(){
+		var result_image =  $(this).closest('tr').find('.images').text();
+		image_copy.on('ready', function(event) {
+			image_copy.on('copy', function(event) {
+				event.clipboardData.setData('text/plain', result_image);
+			});
+		});
+	});
+
+	image_copy.on( 'error', function(event) {
+        console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+        ZeroClipboard.destroy();
+    });
+
+
+    var text_copy = new ZeroClipboard($('.text'));
+
+	$('.text').click(function(){
+		var result_text =  $(this).closest('tr').find('.texto').text();
+		text_copy.on('ready', function(event) {
+			text_copy.on('copy', function(event) {
+				event.clipboardData.setData('text/plain', result_text);
+			});
+		});
+	});
+
+	text_copy.on( 'error', function(event) {
+        console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+        ZeroClipboard.destroy();
+    });
+
+
+  
+	/*
+	$('.image').zclip({
+		path:'public/javascripts/ZeroClipboard.swf',
+		copy: $(this).closest('tr').find('.images').text(),
+	});
+
+	$('.text').click(function(){
+		var result_text =  $(this).closest('tr').find('.texto').text();
+		console.log(result_text);
+	});
+
+	$('.image').click(function(){
+		var result_image =  $(this).closest('tr').find('.images').text();
+		console.log(result_image);
+	});
+
+	$('.text').zclip({
+			path:'public/javascripts/ZeroClipboard.swf',
+			copy: result,
+	});
+	
+	
+	$('.text').click(function(){
+		var result = $(this).closest('tr').find('.texto').text();
+		console.log(result);
+	});
+	*/
+
+
+
+
+	$(".publicar").change(function() {
+		var confirmation = confirm('Estas seguro de publicar este articulo?');
+		if(confirmation == true){
+			var article_id = $(this).val();
+			$.post("http://localhost:3000/", {article_id: article_id}, function() {
+			})
+			.done(function() {
+				$(this).closest("tr").remove();
+			});
+
+		}else{
+			$(this).attr('checked', false);
+		}
+		/*
+		$.post("http://localhost:3000/", function() {
+			alert("success");
+		})
+		.done(function() {
+			alert("second success" );
+		})
+		.fail(function() {
+			alert("error");
+		})
+		.always(function() {
+			alert("finished");
+		});
+	    */
+	});
+
+});
+
+</script>
+</div>
+</body>
+</html>
