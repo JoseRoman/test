@@ -110,7 +110,7 @@ $(document).ready(function(){
 		var confirmation = confirm('Estas seguro de publicar este articulo?');
 		if(confirmation == true){
 			var article_id = $(this).val();
-			$.post("http://localhost:3000/", {article_id: article_id}, function() {
+			$.post(window.location, {article_id: article_id}, function() {
 			})
 			.done(function() {
 				$(this).closest("tr").remove();
